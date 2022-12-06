@@ -90,7 +90,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `price` float NOT NULL,
   `stock` int(11) NOT NULL,
   `category_id` int(11) NOT NULL,
-  `slug` varchar(50) DEFAULT NULL,
+  `slug` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
