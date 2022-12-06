@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mar. 06 déc. 2022 à 11:28
+-- Généré le : mar. 06 déc. 2022 à 13:21
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.4.21
 
@@ -26,15 +26,28 @@ USE `mauvais_coin`;
 -- --------------------------------------------------------
 
 --
+-- Structure de la table `category`
+--
+
+CREATE TABLE IF NOT EXISTS `category` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `category` text NOT NULL,
+  `slug` varchar(50) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- --------------------------------------------------------
+
+--
 -- Structure de la table `commande`
 --
 
 CREATE TABLE IF NOT EXISTS `commande` (
-  `idCommande` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `status` enum('Nouvelle','Expédiée','Finie','Retour Client') NOT NULL,
   `user_id` int(11) NOT NULL,
   `dateCommande` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  PRIMARY KEY (`idCommande`)
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -71,13 +84,14 @@ CREATE TABLE IF NOT EXISTS `panier` (
 --
 
 CREATE TABLE IF NOT EXISTS `product` (
-  `idProduct` int(11) NOT NULL AUTO_INCREMENT,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
   `description` text NOT NULL,
   `price` float NOT NULL,
   `stock` int(11) NOT NULL,
-  `category` varchar(50) NOT NULL,
-  PRIMARY KEY (`idProduct`)
+  `category` int(11) NOT NULL,
+  `slug` varchar(50) DEFAULT NULL,
+  PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- --------------------------------------------------------
@@ -89,7 +103,7 @@ CREATE TABLE IF NOT EXISTS `product` (
 CREATE TABLE IF NOT EXISTS `product_commande` (
   `product_id` int(11) NOT NULL,
   `commande_id` int(11) NOT NULL,
-  `quantité` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL,
   PRIMARY KEY (`product_id`,`commande_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
