@@ -5,7 +5,7 @@ class DatabaseManager {
     private $table_name;
     private $class;
 
-    function __construct($db, $table_name, $class){
+    function __construct($db, $table_name, $class=null){
         $this->db = $db;
         $this->table_name = $table_name;
         $this->class = $class;
