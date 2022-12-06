@@ -6,4 +6,5 @@ class User {
     public $email;
     public $phone;
     public $password;
+    public $admin;
 }
