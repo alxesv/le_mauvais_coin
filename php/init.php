@@ -23,4 +23,8 @@ require_once __DIR__ . '/class/User.class.php';
 //$contactFormManager = new ContactFormManager($db);
 $UserManager = new DatabaseManager($db, 'user', 'User');
 $ContactManager = new DatabaseManager($db, 'contacts', 'ContactForm');
+$ProductManager = new DatabaseManager($db, 'product', "Product");
+$CommandeManager = new DatabaseManager($db, 'commande', "Commande");
+$PanierManager =  new DatabaseManager($db, 'panier', 'Panier');
+$CategoryManager = new DatabaseManager($db, 'category', 'Category');
 ?>
