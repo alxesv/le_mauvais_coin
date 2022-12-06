@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Contact - Site test";
+$pageTitle = "Contact - LMC";
 
 $error_message = get_error();
 ob_start();

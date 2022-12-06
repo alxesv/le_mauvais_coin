@@ -1,5 +1,5 @@
 <?php
-$pageTitle = "Admin Contact - Site test";
+$pageTitle = "Admin Contact - LMC";
 $all_forms = $ContactManager->get_all_from_table();
 
 ob_start();

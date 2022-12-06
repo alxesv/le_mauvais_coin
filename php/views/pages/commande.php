@@ -1,8 +1,8 @@
 <?php
-$pageTitle = "Le mauvais coin";
+$pageTitle = "Ma commande";
 ob_start();
 ?>
-<h1>Le mauvais coin</h1>
+<h1>Ma commande</h1>
 <?php
 $pageContent = ob_get_clean();
 ?>
