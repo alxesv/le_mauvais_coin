@@ -31,7 +31,7 @@ class DatabaseManager {
         $query->execute();
         return $query->fetchall(PDO::FETCH_CLASS, $this->class);
     }
-    public function custom_select($query, $param){
+    public function custom_select($query, $param=null){
         $query = $this->db->prepare($query);
         $query->execute($param);
         return $query->fetchall();
