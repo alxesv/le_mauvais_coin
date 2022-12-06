@@ -7,7 +7,7 @@ require_once __DIR__ . '/db.php';
 
 //Config
 
-$router_pages = ['home', 'contact', 'admin_contact', 'product', 'panier', 'commande', 'category', 'admin_edit_product', 'admin_commande', 'admin_add_product', 'list'];
+$router_pages = ['home', 'contact', 'admin_contact', 'product', 'panier', 'commande', 'category', 'admin_edit_product', 'admin_commande', 'admin_add_product', 'list', 'register'];
 
 // utilitaires
 

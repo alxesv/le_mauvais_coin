@@ -31,7 +31,11 @@ class DatabaseManager {
         $query->execute();
         return $query->fetchall(PDO::FETCH_CLASS, $this->class);
     }
-
+    public function custom_select($query, $param){
+        $query = $this->db->prepare($query);
+        $query->execute($param);
+        return $query->fetchall();
+    }
     public function update_row($kwargs, $row, $condition){
         $set = "";
         $values = [];
