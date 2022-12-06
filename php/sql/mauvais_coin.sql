@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mar. 06 déc. 2022 à 13:21
+-- Généré le : mar. 06 déc. 2022 à 13:36
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.4.21
 
@@ -31,7 +31,7 @@ USE `mauvais_coin`;
 
 CREATE TABLE IF NOT EXISTS `category` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `category` text NOT NULL,
+  `name` varchar(50) NOT NULL,
   `slug` varchar(50) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -89,7 +89,7 @@ CREATE TABLE IF NOT EXISTS `product` (
   `description` text NOT NULL,
   `price` float NOT NULL,
   `stock` int(11) NOT NULL,
-  `category` int(11) NOT NULL,
+  `category_id` int(11) NOT NULL,
   `slug` varchar(50) DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
