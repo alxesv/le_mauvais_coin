@@ -5,7 +5,7 @@
         public $description;
         public $price;
         public $stock;
-        public $category;
+        public $category_id;
         public $slug;
     }
 ?>
