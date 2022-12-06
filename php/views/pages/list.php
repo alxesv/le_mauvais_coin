@@ -21,12 +21,12 @@ ob_start();
         <?php
             foreach ($products as $pkey => $pvalue){ ?>
                 <tr>
-                    <td><a href="?p=product&?slug=<?= $pvalue['slug'] ?>"><?=$pvalue['Name']?></a></td>
+                    <td><a href="?p=product&slug=<?= $pvalue['slug'] ?>"><?=$pvalue['Name']?></a></td>
                     <td><?=$pvalue['Description']?></td>
                     <td><?=$pvalue['Category']?></td>
                     <td><?=$pvalue['Price']?></td>
                     <!-- If admin -->
-                    <td><a href="?p=admin_edit_product&?id=<?=$pvalue['id']?>">Modifier</a></td>
+                    <td><a href="?p=admin_edit_product&id=<?=$pvalue['id']?>">Modifier</a></td>
                     <td><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$pvalue['id']?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton"></form></td>
                 <tr>
                 <?php

@@ -26,8 +26,12 @@ class DatabaseManager {
         $query->execute($values);
     }
 
-    public function get_all_from_table(){
-        $query = $this->db->prepare("SELECT * from " . $this->table_name);
+    public function get_all_from_table($where=null){
+        $clause = "";
+        if(isset($where)){
+            $clause = " " . $where;
+        }
+        $query = $this->db->prepare("SELECT * from " . $this->table_name . $clause);
         $query->execute();
         return $query->fetchall(PDO::FETCH_CLASS, $this->class);
     }

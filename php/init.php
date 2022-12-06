@@ -19,6 +19,11 @@ require_once __DIR__ . '/utils/errors.php';
 require_once __DIR__ . '/class/DatabaseManager.class.php';
 require_once __DIR__ . '/class/ContactForm.class.php';
 require_once __DIR__ . '/class/User.class.php';
+require_once __DIR__ . '/class/Category.class.php';
+require_once __DIR__ . '/class/Panier.class.php';
+require_once __DIR__ . '/class/Product.class.php';
+require_once __DIR__ . '/class/Commande.class.php';
+
 
 //$contactFormManager = new ContactFormManager($db);
 $UserManager = new DatabaseManager($db, 'user', 'User');
