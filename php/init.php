@@ -34,6 +34,7 @@ $ProductManager = new DatabaseManager($db, 'product', "Product");
 $CommandeManager = new DatabaseManager($db, 'commande', "Commande");
 $PanierManager =  new DatabaseManager($db, 'panier', 'Panier');
 $CategoryManager = new DatabaseManager($db, 'category', 'Category');
+
 $ProductCommandeManager = new DatabaseManager($db, 'product_commande', 'ProductCommande');
 $CommentsManager = new DatabaseManager($db, 'comments', 'Comments');
 
@@ -42,4 +43,5 @@ $is_admin = false;
 if(isset($_SESSION['admin'])){
     $is_admin = $_SESSION['admin'];
 }
+
 ?>
