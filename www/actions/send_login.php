@@ -23,7 +23,7 @@ if(password_verify($password, $user[0]->password)){
 
 if($succes) {
     $_SESSION['user_id'] = $user[0]->id;
-    $_SESSI0N['admin'] = $user[0]->admin;
+    $_SESSION['admin'] = $user[0]->admin;
     $_SESSION['user_name'] = $user[0]->name;
     header('Location:../?p=home');
 }else {

@@ -2,7 +2,6 @@
 $pageTitle = "Liste";
 $sql = null;
 $research = "";
-
 $category = $CategoryManager->get_all_from_table();
 
 if (isset($_GET['cat_slug'])){
@@ -47,15 +46,16 @@ ob_start();
                 </form>
             </span>
             <span><a href="?p=list">Clear</a></span>
-            <!-- If admin -->
+            <?php if($is_admin){ ?>
             <span><a href="?p=admin_add_product">Add product</a></span>
-            <!-- -->
+            <?php } ?>
             <th>Nom</th>
             <th>Description</th>
             <th>Catégorie</th>
             <th>Prix</th>
-            <!-- If admin -->
+            <?php if($is_admin){ ?>
             <th>Stock</th>
+            <?php } ?>
         </thead>
         <tbody>
         <?php
@@ -65,14 +65,12 @@ ob_start();
                     <td><?=$p->description?></td>
                     <td><?php foreach($category as $c){if($c->id == $p->category_id){ echo $c->name;}} ?></td>
                     <td><?=$p->price?>$</td>
-                    <!-- If admin -->
+                    <?php if($is_admin){ ?>
                     <td><?= $p->stock?></td>
                     <td><a href="?p=admin_edit_product&id=<?=$p->id?>">Modifier</a></td>
                     <td><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$p->id?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton"></form></td>
-
                     <td><form method="POST" action ="actions/addPanier.php"><input type="hidden" name="product_id" value="<?=$p->id?>"><input type="submit" name="add" value="Ajouter" class="addButton"></form></td>
-
-
+                    <?php } ?>
                 </tr>
 
                 <?php
