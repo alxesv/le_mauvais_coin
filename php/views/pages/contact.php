@@ -11,7 +11,9 @@ if ($error_message){ ?>
     <p class="error"><?=$error_message?></p>
 <?php }
 ?>
-
+<?php if($is_admin) {?>
+  <a href="?p=admin_contact">Admin contact page</a>
+<?php } ?>
 <form action="actions/send_contact.php" method="POST">
   <label for="name">Votre nom :</label><br>
   <input type="text" id="name" name="name"><br>
