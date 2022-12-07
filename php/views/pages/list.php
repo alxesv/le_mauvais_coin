@@ -69,6 +69,8 @@ ob_start();
                     <td><?= $p->stock?></td>
                     <td><a href="?p=admin_edit_product&id=<?=$p->id?>">Modifier</a></td>
                     <td><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$p->id?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton"></form></td>
+                    <?php } ?>
+                    <?php if(isset($_SESSION['user_id'])){?>
                     <td><form method="POST" action ="actions/addPanier.php"><input type="hidden" name="product_id" value="<?=$p->id?>"><input type="submit" name="add" value="Ajouter" class="addButton"></form></td>
                     <?php } ?>
                 </tr>
