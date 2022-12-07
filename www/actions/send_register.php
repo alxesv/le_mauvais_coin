@@ -2,33 +2,50 @@
 
 require_once __DIR__ . '/../../php/init.php';
 
-$email = $_POST['email'];
-$pseudo = $_POST['pseudo'];
-$password = $_POST['mdp'];
+if(!isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['conf_password'], $_POST['phone'])){
+    save_error("Tous les champs ne sont pas remplis");
+}
 
+$users = $UserManager->get_all_from_table();
 
-if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // check si email valide
-    $emailErr = "Format d'email invalide";
-    echo "<script>";
-    echo 'alert("' . $emailErr;
-    echo '");document.location="../inscription.php";</script>';
+$email = htmlspecialchars($_POST['email']);
+$name = htmlspecialchars($_POST['name']);
+$password = htmlspecialchars($_POST['password']);
+$conf_password = htmlspecialchars($_POST['conf_password']);
+$phone = htmlspecialchars($_POST['phone']);
+$name_taken = false;
+$succes = false;
+
+foreach($users as $user){
+    if($user->name == $name){
+        $name_taken = true;
+    }
 }
-else if ($password !== $_POST["confirmmdp"]){ // check si les mdp correspondent
-    $confirmmdpErr= "Les mots de passes ne correspondent pas";
-    echo "<script>";
-    echo 'alert("' . $confirmmdpErr;
-    echo '");document.location="../inscription.php";</script>';
+if($name_taken) {
+    save_error("Nom déjà pris");
+}else if (!filter_var($email, FILTER_VALIDATE_EMAIL)) { // check si email valide
+    save_error("Email invalide");
+}else if ($password !== $conf_password){ // check si les mdp correspondent
+    save_error("Les mots de passe ne correspondent pas");
+}else if(strlen($name) < 4) { // check si le pseudo fait au moins 4 caractères
+    save_error("Votre nom doit faire au minimum 4 caractères.");
+}elseif(!preg_match("/^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{5,}$/",$password)){
+    save_error("Votre mot de passe doit faire au minimum 5 caractères, contenir une majuscule une minuscule et un chiffre.");
+}else{
+    $hash = password_hash($password, PASSWORD_DEFAULT);
+    $data = [
+        'name' => $name,
+        'email' => $email,
+        'phone' => $phone,
+        'password' => $hash,
+        'admin' => 0
+    ];
+    $UserManager->insert_into($data);
+    $succes = true;
 }
-else if(strlen($pseudo) < 4) { // check si le pseudo fait au moins 4 caractères
-    $pseudoErr = "Votre pseudo doit faire au minimum 4 caractères.";
-    echo "<script>";
-    echo 'alert("' . $pseudoErr;
-    echo '");document.location="../inscription.php";</script>';
+
+if($succes){
+    header('Location:../?p=home');
+}else {
+    header('Location:' . $_SERVER['HTTP_REFERER']);
 }
-else if (!preg_match("~^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$~",$password)) { // check les règles du mdp
-    $mdpErr = "Votre mot de passe doit faire au minimum 8 caractères, contenir une majuscule, une minuscule, un chiffre et un caractère spécial.";
-    echo "<script>";
-    echo 'alert("' . $mdpErr;
-    echo '");document.location="../inscription.php";</script>';
-}
-else {

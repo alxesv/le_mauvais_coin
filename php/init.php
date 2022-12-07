@@ -23,14 +23,25 @@ require_once __DIR__ . '/class/Category.class.php';
 require_once __DIR__ . '/class/Panier.class.php';
 require_once __DIR__ . '/class/Product.class.php';
 require_once __DIR__ . '/class/Commande.class.php';
+require_once __DIR__ . '/class/Comments.class.php';
+require_once __DIR__ . '/class/ProductCommande.class.php';
 
 
-//$contactFormManager = new ContactFormManager($db);
+
 $UserManager = new DatabaseManager($db, 'user', 'User');
 $ContactManager = new DatabaseManager($db, 'contacts', 'ContactForm');
 $ProductManager = new DatabaseManager($db, 'product', "Product");
 $CommandeManager = new DatabaseManager($db, 'commande', "Commande");
 $PanierManager =  new DatabaseManager($db, 'panier', 'Panier');
 $CategoryManager = new DatabaseManager($db, 'category', 'Category');
-$ProductCommandeManager = new DatabaseManager($db, 'product_commande');
+
+$ProductCommandeManager = new DatabaseManager($db, 'product_commande', 'ProductCommande');
+$CommentsManager = new DatabaseManager($db, 'comments', 'Comments');
+
+
+$is_admin = false;
+if(isset($_SESSION['admin'])){
+    $is_admin = $_SESSION['admin'];
+}
+
 ?>

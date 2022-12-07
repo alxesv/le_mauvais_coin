@@ -15,8 +15,11 @@
       <li><a href="?p=contact">Contact</a></li>
       <li><a href="?p=list">Liste</a></li>
       <li><a href="?p=register">Inscription</a></li>
+      <?php if(isset($_SESSION['user_id'])){ ?>
+        <li><a href="actions/logout.php">Déconnexion (<?=$_SESSION['user_name']?>)</a></li>
+      <?php }else { ?>
       <li><a href="?p=login">Connexion</a></li>
-
+      <?php } ?>
     </ul>
   </nav>
 </header>

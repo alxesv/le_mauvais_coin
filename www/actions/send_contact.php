@@ -37,6 +37,4 @@ $data = [
 
 $ContactManager->insert_into($data);
 
-//$contactFormManager->save_contact_form($name, $_POST['email'], $message);
-
-header('Location:' . $_SERVER['HTTP_REFERER'] . '&success=1');
+header('Location:' . $_SERVER['HTTP_REFERER']);
