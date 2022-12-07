@@ -25,6 +25,7 @@ require_once __DIR__ . '/class/Product.class.php';
 require_once __DIR__ . '/class/Commande.class.php';
 require_once __DIR__ . '/class/Comments.class.php';
 require_once __DIR__ . '/class/ProductCommande.class.php';
+require_once __DIR__ . '/class/Ratings.class.php';
 
 
 
@@ -36,6 +37,7 @@ $PanierManager =  new DatabaseManager($db, 'panier', 'Panier');
 $CategoryManager = new DatabaseManager($db, 'category', 'Category');
 $ProductCommandeManager = new DatabaseManager($db, 'product_commande', 'ProductCommande');
 $CommentsManager = new DatabaseManager($db, 'comments', 'Comments');
+$RatingsManager = new DatabaseManager($db, 'ratings', 'Ratings');
 
 
 $is_admin = false;

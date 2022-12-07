@@ -7,19 +7,27 @@ $all_info_product = $ProductManager->get_all_from_table("WHERE slug = \"" . $slu
 $categories = $CategoryManager->get_all_from_table();
 $comments = $CommentsManager->get_all_from_table("WHERE product_id =" . $all_info_product[0]->id . " ORDER BY date DESC");
 $users = $UserManager->get_all_from_table();
-
+$ratings = $RatingsManager->custom_select("SELECT AVG(rating) from ratings WHERE product_id =?", [$all_info_product[0]->id]);
 $can_comment = false;
+$can_rate = true;
 
 if(isset($_SESSION['user_id'])){
     $commandes = $CommandeManager->get_all_from_table("WHERE user_id =" . $_SESSION['user_id']);
+    $user_ratings = $RatingsManager->get_all_from_table("WHERE user_id =" . $_SESSION['user_id'] . " AND product_id =". $all_info_product[0]->id);
     foreach ($commandes as $commande){
         $commandeProduct = $ProductCommandeManager->get_all_from_table("WHERE product_id =" . $all_info_product[0]->id . " AND commande_id =" . $commande->id);
         if(!empty($commandeProduct)){
             $can_comment = true;
         }
     }
+    foreach($user_ratings as $r){
+        if(!empty($user_ratings)){
+            $can_rate = false;
+        }
+    }
 }
 
+$rating = round((float)$ratings[0][0], 2);
 ob_start();
 ?>
 <h1>Produit</h1>
@@ -41,6 +49,26 @@ ob_start();
     <li><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$all_info_product[0]->id?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton"></form></li>
     <?php } ?>
     <?php ?>
+    <?php if($rating != 0){?>
+    <span>Note : <?= $rating ?></span>
+    <?php } ?>
+    <?php if($can_rate && ($can_comment|| $is_admin)){ ?>
+        <form action="actions/rating.php" method="POST">
+        <input type="radio" id="rating1" name="rating" required value="1">
+        <label for="rating1">1</label>
+        <input type="radio" id="rating2" name="rating" required value="2">
+        <label for="rating2">2</label>
+        <input type="radio" id="rating3" name="rating" required value="3">
+        <label for="rating3">3</label>
+        <input type="radio" id="rating4" name="rating" required value="4">
+        <label for="rating4">4</label>
+        <input type="radio" id="rating5" name="rating" required value="5">
+        <label for="rating5">5</label>
+        <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
+        <input type="hidden" name="product_id" value="<?= $all_info_product[0]->id ?>">
+        <input type="submit" value="Noter">
+        </form>
+    <?php } ?>
     <h2>Commentaires</h2>
     <?php if($can_comment || $is_admin){ ?> 
         <form action="actions/add_comment.php" method="POST">
