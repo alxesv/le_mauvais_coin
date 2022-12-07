@@ -25,7 +25,6 @@ require_once __DIR__ . '/class/Product.class.php';
 require_once __DIR__ . '/class/Commande.class.php';
 
 
-//$contactFormManager = new ContactFormManager($db);
 $UserManager = new DatabaseManager($db, 'user', 'User');
 $ContactManager = new DatabaseManager($db, 'contacts', 'ContactForm');
 $ProductManager = new DatabaseManager($db, 'product', "Product");
@@ -33,6 +32,8 @@ $CommandeManager = new DatabaseManager($db, 'commande', "Commande");
 $PanierManager =  new DatabaseManager($db, 'panier', 'Panier');
 $CategoryManager = new DatabaseManager($db, 'category', 'Category');
 $ProductCommandeManager = new DatabaseManager($db, 'product_commande');
+$CommentsManager = new DatabaseManager($db, 'comments', 'Comments');
+
 
 $is_admin = false;
 if(isset($_SESSION['admin'])){
