@@ -16,6 +16,8 @@ ob_start();
         <thead>
             <span><form action="actions/search.php" method="POST"><input type="text" placeholder="Chercher par nom..." name="search"><input type="submit" value="Go"></form></span>
             <span><a href="?p=list">Clear</a></span>
+            <!-- If admin -->
+            <span><a href="?p=admin_add_product">Add product</a></span>
         </thead>
         <tbody>
         <?php
