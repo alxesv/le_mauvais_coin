@@ -6,3 +6,10 @@ if(isset($_POST['delete'])){
     $ProductManager->delete_row('id', $_POST['product_id']);
     header('Location:../?p=list');
 }
+
+if(isset($_POST['deletePanier'])){
+    $product_id = $_POST['product_id'];
+    $PanierManager->delete_row('product_id', $product_id);
+
+    header('Location:../?p=panier');
+}
