@@ -20,4 +20,4 @@ $data = [
 
 $ProductManager->update_row($data, 'id', $_POST['product_id']);
 
-header('Location:../?p=product&id=' . $_POST['product_id']);
+header('Location:../?p=product&slug=' . $slug);
