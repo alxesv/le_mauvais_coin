@@ -14,15 +14,16 @@ if($error_message){ ?>
 
 <form action = "actions/send_register.php" method="POST">
   <label for="name">Name:</label><br>
-  <input type="text" id="name" name="name"><br>
-
+  <input type="text" id="name" name="name" required><br>
   <label for="email">Email:</label><br>
-  <input type="email" id="email" name="email"><br>
-
+  <input type="email" id="email" name="email" required><br>
+  <label for="phone">Téléphone:</label><br>
+  <input type="tel" id="phone" name="phone" required><br>
   <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password"><br>
-
-  <input type="submit" value="connexion">
+  <input type="password" id="password" name="password" required><br>
+  <label for="password">Confirm password:</label><br>
+  <input type="password" id="conf_password" name="conf_password" required><br>
+  <input type="submit" value="S'inscrire">
 </form>
 
 <?php

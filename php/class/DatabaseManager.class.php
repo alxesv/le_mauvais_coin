@@ -11,6 +11,8 @@ class DatabaseManager {
         $this->class = $class;
     }
 
+    //$this->db->setAttribute( PDO::ATTR_ERRMODE, PDO::ERRMODE_WARNING ); DEBUG
+    
     public function insert_into($kwargs) {
         $columns = "";
         $values = [];
