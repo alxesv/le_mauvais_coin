@@ -2,6 +2,10 @@
 
 require_once __DIR__ . '/../../php/init.php';
 
+if(!isset($_POST['name'], $_POST['email'], $_POST['password'], $_POST['conf_password'], $_POST['phone'])){
+    save_error("Tous les champs ne sont pas remplis");
+}
+
 $users = $UserManager->get_all_from_table();
 
 $email = htmlspecialchars($_POST['email']);
