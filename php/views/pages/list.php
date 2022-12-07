@@ -49,6 +49,13 @@ ob_start();
             <span><a href="?p=list">Clear</a></span>
             <!-- If admin -->
             <span><a href="?p=admin_add_product">Add product</a></span>
+            <!-- -->
+            <th>Nom</th>
+            <th>Description</th>
+            <th>Catégorie</th>
+            <th>Prix</th>
+            <!-- If admin -->
+            <th>Stock</th>
         </thead>
         <tbody>
         <?php
@@ -57,8 +64,9 @@ ob_start();
                     <td><a href="?p=product&slug=<?= $p->slug ?>"><?=$p->name?></a></td>
                     <td><?=$p->description?></td>
                     <td><?php foreach($category as $c){if($c->id == $p->category_id){ echo $c->name;}} ?></td>
-                    <td><?=$p->price?></td>
+                    <td><?=$p->price?>$</td>
                     <!-- If admin -->
+                    <td><?= $p->stock?></td>
                     <td><a href="?p=admin_edit_product&id=<?=$p->id?>">Modifier</a></td>
                     <td><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$p->id?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton"></form></td>
                 <tr>
