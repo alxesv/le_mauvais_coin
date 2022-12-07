@@ -32,5 +32,5 @@ $ProductManager = new DatabaseManager($db, 'product', "Product");
 $CommandeManager = new DatabaseManager($db, 'commande', "Commande");
 $PanierManager =  new DatabaseManager($db, 'panier', 'Panier');
 $CategoryManager = new DatabaseManager($db, 'category', 'Category');
-$ProductCommanndeManager = new DatabaseManager($db, 'product_commande');
+$ProductCommandeManager = new DatabaseManager($db, 'product_commande');
 ?>
