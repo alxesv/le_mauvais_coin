@@ -19,10 +19,12 @@ ob_start();
             echo $category->name;
             }}?>
     </li>
+    <li><form method="POST" action ="actions/addPanier.php"><input type="hidden" name="product_id" value="<?=$all_info_product[0]->id?>"><input type="hidden" name="product_slug" value="<?=$all_info_product[0]->slug?>"><input type="submit" name="addProduct" value="Ajouter" class="addButton"></form></li>
     <!-- If admin -->
     <li><a href="?p=admin_edit_product&id=<?=$all_info_product[0]->id?>">Modifier</a></li>
     <li><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$all_info_product[0]->id?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton"></form></li>
-    </ul>
+    
+</ul>
 <?php
 
 $pageContent = ob_get_clean();
