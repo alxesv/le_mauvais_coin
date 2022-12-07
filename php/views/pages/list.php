@@ -69,7 +69,7 @@ ob_start();
                     <td><?= $p->stock?></td>
                     <td><a href="?p=admin_edit_product&id=<?=$p->id?>">Modifier</a></td>
                     <td><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$p->id?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton"></form></td>
-                <tr>
+                </tr>
                 <?php
                     }
                 ?>
