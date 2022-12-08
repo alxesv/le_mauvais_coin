@@ -12,6 +12,7 @@ ob_start();
 <?php foreach($commandes as $commande){ 
     $productCommande = $ProductCommandeManager->get_all_from_table("WHERE commande_id =" . $commande->id); 
     ?>
+    <div>Numéro de commande <?= $commande->id ?></div>
     <div>Statut : <?= $commande->status ?></div>
     <div>Commandé le : <?= $commande->dateCommande ?></div>
     <div>Contenu : 
@@ -21,6 +22,7 @@ ob_start();
                 foreach($products as $product){
                 ?>
                 <li>Produit : <?= $product->name?></li>
+                <li>Description : <?= $product->description ?></li>
                 <li>Prix : <?= $product->price?></li>
                 <li>Quantité : <?= $pc->quantity?></li>
                 <br>
