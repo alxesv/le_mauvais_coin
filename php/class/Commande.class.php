@@ -5,5 +5,6 @@ class Commande {
     public $user_id;
     public $dateCommande;
     public $adresseLivraison;
+    public $dateLastUpdate;
 }
 ?>
