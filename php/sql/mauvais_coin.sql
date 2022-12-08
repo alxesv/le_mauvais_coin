@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Hôte : localhost:8889
--- Généré le : mer. 07 déc. 2022 à 13:25
+-- Généré le : jeu. 08 déc. 2022 à 13:22
 -- Version du serveur :  5.7.34
 -- Version de PHP : 7.4.21
 
@@ -60,6 +60,15 @@ CREATE TABLE `commande` (
   `dateLastUpdate` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `commande`
+--
+
+INSERT INTO `commande` (`id`, `status`, `user_id`, `dateCommande`, `adresseLivraison`, `dateLastUpdate`) VALUES
+(1, 'Nouvelle', 14, '2022-12-07 14:43:25', '5 rue abc', '2022-12-07 14:43:25'),
+(2, 'Expédiée', 1, '2022-12-08 10:14:43', '4 rue aaa', '2022-12-08 10:39:47'),
+(3, 'Retour Client', 1, '2022-12-08 10:17:19', '3 rue bbb', '2022-12-08 10:31:49');
+
 -- --------------------------------------------------------
 
 --
@@ -69,9 +78,18 @@ CREATE TABLE `commande` (
 CREATE TABLE `comments` (
   `id` int(11) NOT NULL,
   `user_id` int(11) NOT NULL,
-  `comment` int(11) NOT NULL,
-  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `comment` varchar(300) NOT NULL,
+  `date` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `product_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `comments`
+--
+
+INSERT INTO `comments` (`id`, `user_id`, `comment`, `date`, `product_id`) VALUES
+(1, 14, 'super t-shirt !!', '2022-12-07 14:56:03', 15),
+(7, 13, 'test', '2022-12-07 16:37:47', 9);
 
 -- --------------------------------------------------------
 
@@ -86,6 +104,14 @@ CREATE TABLE `contacts` (
   `message` varchar(300) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+--
+-- Déchargement des données de la table `contacts`
+--
+
+INSERT INTO `contacts` (`id`, `name`, `email`, `message`) VALUES
+(1, 'aeazeae', 'ezaeaz@dsf.fr', 'dsqfsqqs'),
+(2, 'fsfsfqf', 'fqs@sdd.f', 'qsdqsqfqsfqf');
+
 -- --------------------------------------------------------
 
 --
@@ -98,6 +124,16 @@ CREATE TABLE `panier` (
   `user_id` int(11) NOT NULL,
   `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `panier`
+--
+
+INSERT INTO `panier` (`id`, `product_id`, `user_id`, `quantity`) VALUES
+(1, 6, 1, 1),
+(2, 14, 1, 1),
+(3, 22, 1, 2),
+(4, 4, 1, 1);
 
 -- --------------------------------------------------------
 
@@ -122,7 +158,7 @@ CREATE TABLE `product` (
 INSERT INTO `product` (`id`, `name`, `description`, `price`, `stock`, `category_id`, `slug`) VALUES
 (4, 'Table', 'une table', 12228, 1, 2, 'table'),
 (5, 'Apple', 'A delicious red or green fruit', 1.99, 50, 6, 'apple'),
-(6, 'Banana', 'A yellow fruit with a soft texture', 1.13, 52, 1, 'banana'),
+(6, 'Banana', 'A yellow fruit with a soft texture', 1.13, 50, 1, 'banana'),
 (7, 'Orange', 'A citrus fruit with a juicy interior', 1.49, 30, 6, 'orange'),
 (8, 'Strawberry', 'A red fruit with a sweet flavor', 3.1, 20, 6, 'strawberry'),
 (9, 'Blueberry', 'A small, sweet fruit with a blue-purple color', 3.49, 10, 6, 'blueberry'),
@@ -142,8 +178,55 @@ INSERT INTO `product` (`id`, `name`, `description`, `price`, `stock`, `category_
 
 CREATE TABLE `product_commande` (
   `product_id` int(11) NOT NULL,
-  `commande_id` int(11) NOT NULL
+  `commande_id` int(11) NOT NULL,
+  `quantity` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `product_commande`
+--
+
+INSERT INTO `product_commande` (`product_id`, `commande_id`, `quantity`) VALUES
+(7, 1, 1),
+(14, 2, 1),
+(14, 3, 1),
+(15, 1, 1),
+(22, 2, 1),
+(22, 3, 2);
+
+-- --------------------------------------------------------
+
+--
+-- Structure de la table `ratings`
+--
+
+CREATE TABLE `ratings` (
+  `id` int(11) NOT NULL,
+  `product_id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `rating` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Déchargement des données de la table `ratings`
+--
+
+INSERT INTO `ratings` (`id`, `product_id`, `user_id`, `rating`) VALUES
+(1, 5, 14, 3),
+(2, 5, 11, 5),
+(3, 8, 15, 1),
+(4, 1, 1, 4),
+(5, 6, 1, 4),
+(6, 5, 3, 1),
+(7, 5, 4, 4),
+(9, 15, 14, 3),
+(10, 7, 14, 2),
+(11, 6, 13, 5),
+(12, 14, 13, 3),
+(13, 5, 13, 1),
+(14, 21, 13, 4),
+(15, 9, 13, 4),
+(16, 15, 13, 2);
 
 -- --------------------------------------------------------
 
@@ -227,6 +310,12 @@ ALTER TABLE `product_commande`
   ADD PRIMARY KEY (`product_id`,`commande_id`);
 
 --
+-- Index pour la table `ratings`
+--
+ALTER TABLE `ratings`
+  ADD PRIMARY KEY (`id`);
+
+--
 -- Index pour la table `user`
 --
 ALTER TABLE `user`
@@ -247,31 +336,37 @@ ALTER TABLE `category`
 -- AUTO_INCREMENT pour la table `commande`
 --
 ALTER TABLE `commande`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT pour la table `comments`
 --
 ALTER TABLE `comments`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT pour la table `contacts`
 --
 ALTER TABLE `contacts`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT pour la table `panier`
 --
 ALTER TABLE `panier`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT pour la table `product`
 --
 ALTER TABLE `product`
   MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+
+--
+-- AUTO_INCREMENT pour la table `ratings`
+--
+ALTER TABLE `ratings`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT pour la table `user`
