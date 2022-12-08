@@ -30,7 +30,7 @@ ob_start();
 ?>
 <h1>Liste</h1>
 <section>
-    <table><thead>
+    <table  class="table table-striped"><thead>
             <span>
                 <form action="actions/search.php" method="POST">
                     <label for="category">Filtrer par catégorie :</label>
@@ -45,9 +45,9 @@ ob_start();
                     <input type="submit" value="Go">
                 </form>
             </span>
-            <span><a href="?p=list">Clear</a></span>
+            <span><a href="?p=list" class="mx-2">Clear</a></span>
             <?php if($is_admin){ ?>
-            <span><a href="?p=admin_add_product">Add product</a></span>
+            <span><a href="?p=admin_add_product" class="mx-2">Add product</a></span>
             <?php } ?>
             <th>Nom</th>
             <th>Description</th>

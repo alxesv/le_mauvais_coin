@@ -7,9 +7,11 @@ ob_start();
 <h1>Admin Contact page</h1>
 <?php 
 foreach ($all_forms as $form) {?>
+<div class="p-3 mb-2 bg-light text-dark shadow-sm">
     <div>Nom : <?= $form->name?></div>
     <div>Mail : <?= $form->email?></div>
     <div>Message :<?= $form->message?></div>
+</div>
 <?php }
 
 ?>

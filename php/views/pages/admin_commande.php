@@ -38,7 +38,7 @@ ob_start();
             <input type="submit" value="Go">
         </form>
     <?php foreach($commandes as $commande){ ?>
-        <li>
+        <li class="p-3 mb-2 bg-light text-dark shadow-sm">
             <div>Numéro commande : <?= $commande->id?></div>
             <div>Statut : <?= $commande->status?></div>
             <form action="actions/update_commande.php" method="POST">
