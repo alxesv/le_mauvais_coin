@@ -1,6 +1,6 @@
 <footer>
-Besoin d'aide ? <br>
-Contactez nous au 06.26.12.06.66 😁
+<p>Besoin d'aide ?</p>
+<p>Contactez nous au 06.26.12.06.66 😁</p>
 </footer>
 
 </body>
