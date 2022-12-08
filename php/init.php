@@ -12,6 +12,7 @@ $router_pages = ['home', 'contact', 'admin_contact', 'product', 'panier', 'comma
 // utilitaires
 
 require_once __DIR__ . '/utils/errors.php';
+require_once __DIR__ . '/utils/add_panier.php';
 
 
 // classes
