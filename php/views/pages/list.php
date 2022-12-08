@@ -25,7 +25,7 @@ if (!empty($research)){
     $sql .= $research;
 }
 
-$product = $ProductManager->get_all_from_table($sql);
+$product = $ProductManager->get_all_from_table($sql . " ORDER BY name ASC");
 ob_start();
 ?>
 <h1>Liste</h1>
