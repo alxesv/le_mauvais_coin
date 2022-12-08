@@ -39,4 +39,15 @@ if(isset($_POST['addProduct'])){
     } 
     header('Location:../?p=product&slug='. $product_slug);
 }
+
+if(isset($_POST['addPanier'])){
+    $product_id = $_POST['product_id'];
+    $items= $PanierManager->get_all_from_table("WHERE user_id =" . $user_id . " AND product_id=" . $product_id); 
+        $quantity = (int)$items[0]->quantity;
+        $params = ['quantity'=> $quantity+ 1];
+        $PanierManager->update_row($params, "product_id", $product_id);
+    
+    header('Location:../?p=panier');
+
+}
 ?>
