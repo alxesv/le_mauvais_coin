@@ -13,14 +13,13 @@ if(isset($_POST['add'])){
 //depuis product
 if(isset($_POST['addProduct'])){
     add_panier( $_POST['product_id'],$user_id, $PanierManager);
-    $product_slug = $_POST['product_slug'];
-        header('Location:../?p=product&slug='. $product_slug);
+        header('Location:' . $_SERVER['HTTP_REFERER']);
     
 }
 //depuis panier
 if(isset($_POST['addPanier'])){
     add_panier( $_POST['product_id'],$user_id, $PanierManager);
-        header('Location:../?p=panier');
+        header('Location:' . $_SERVER['HTTP_REFERER']);
 }
 
 
