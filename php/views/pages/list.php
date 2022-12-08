@@ -59,7 +59,9 @@ ob_start();
         </thead>
         <tbody>
         <?php
-            foreach ($product as $p){ ?>
+            foreach ($product as $p){
+                if($is_admin || ($p->stock > 1)) {  
+                ?>
                 <tr>
                     <td><a href="?p=product&slug=<?= $p->slug ?>"><?=$p->name?></a></td>
                     <td><?=$p->description?></td>
@@ -76,7 +78,7 @@ ob_start();
                 </tr>
 
                 <?php
-                    }
+                    }}
                 ?>
         </tbody>
     </table>
