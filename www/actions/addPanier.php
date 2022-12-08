@@ -7,7 +7,7 @@ if(isset($_SESSION['user_id'])){
 //depuis list
 if(isset($_POST['add'])){
     add_panier( $_POST['product_id'],$user_id, $PanierManager);
-        header('Location:../?p=list');
+        header('Location:' . $_SERVER['HTTP_REFERER']);
     
 }
 //depuis product
