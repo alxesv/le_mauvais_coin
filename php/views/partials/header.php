@@ -21,7 +21,9 @@
       <?php }else { ?>
       <li><a href="?p=login">Connexion</a></li>
       <?php } if($is_admin) {?>
-        <li><a href=""></a></li>
+        <li><a href="?p=admin_commande">Gérer commandes</a></li>
+        <li><a href="?p=admin_contact">Gérer contacts</a></li>
+        <li><a href="?p=admin_add_product">Ajouter un produit</a></li>
         <?php } ?>
     </ul>
   </nav>
