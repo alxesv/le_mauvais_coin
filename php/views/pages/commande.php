@@ -1,13 +1,17 @@
 <?php
 $pageTitle = "Ma commande";
+if(isset($_SESSION['user_id'])){
+    $user_id = $_SESSION['user_id'];
+}
 $error_message = get_error();
-$query= "SELECT product.id, product.name, product.price , product.description FROM panier INNER JOIN product ON panier.product_id = product.id WHERE panier.user_id = 1";
+$query= "SELECT product.id, product.name, product.price , product.description FROM panier INNER JOIN product ON panier.product_id = product.id WHERE panier.user_id =". $user_id;
 $panier = $PanierManager->custom_select($query);
 ob_start();
 ?>
 <h1>Ma commande</h1>
 <h2>Récapitulatif</h2>
-<?php foreach($panier as $productPanier){ ?>
+<?php 
+foreach($panier as $productPanier){ ?>
     <li><?= $productPanier["name"] ?> : <?= $productPanier["price"] ?> </li>
     <li><?= $productPanier["description"] ?> </li>
       
