@@ -1,5 +1,5 @@
 <?php
-require_once __DIR__ . '/../init.php';
+
 function add_panier($idProduit,$user_id,$PanierManager){
 
         $product_id = $idProduit;
