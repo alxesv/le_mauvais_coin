@@ -1,5 +1,8 @@
 <?php
 require_once __DIR__ . '/../../php/init.php';
+if(isset($_SESSION['user_id'])){
+    $user_id = $_SESSION['user_id'];
+}
 
 if(isset($_POST['delete'])){
     $product_id = $_POST['product_id'];
@@ -9,7 +12,18 @@ if(isset($_POST['delete'])){
 
 if(isset($_POST['deletePanier'])){
     $product_id = $_POST['product_id'];
-    $PanierManager->delete_row('product_id', $product_id);
+
+    $panier= $PanierManager->get_all_from_table("WHERE user_id =" . $user_id . " AND product_id=" . $product_id); 
+    $quantity = (int)$panier[0]->quantity;
+    $params = ['quantity'=> $quantity- 1];
+    if($quantity <= 1){
+        $PanierManager->delete_row('product_id', $product_id);
+        
+    }
+    else {
+        $PanierManager->update_row($params, "product_id", $product_id);
+    }
+    
     header('Location:../?p=panier');
 }
 
