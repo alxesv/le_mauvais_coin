@@ -10,23 +10,27 @@
 </head>
 <body>
     <header>
-  <nav>
-    <ul>
-      <li><a href="?p=home">Accueil</a></li>
-      <li><a href="?p=contact">Contact</a></li>
-      <li><a href="?p=list">Liste</a></li>
-      <li><a href="?p=register">Inscription</a></li>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark" >
+  <div class="container px-lg-5">
+  <span class="navbar-brand">le mauvais coin</span>
+  <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+      <li class="nav-item"><a class="nav-link" href="?p=home">Accueil</a></li>
+      <li class="nav-item"><a class="nav-link" href="?p=contact">Contact</a></li>
+      <li class="nav-item"><a class="nav-link" href="?p=list">Liste</a></li>
+      <li class="nav-item"><a class="nav-link" href="?p=register">Inscription</a></li>
       <?php if(isset($_SESSION['user_id'])){ ?>
-        <li><a href="?p=panier">Panier</a></li>
-        <li> <a href="?p=mes_commandes">Mes commandes</a></li>
-        <li><a href="actions/logout.php">Déconnexion (<?=$_SESSION['user_name']?>)</a></li>
+        <li class="nav-item"><a class="nav-link" href="?p=panier">Panier</a></li>
+        <li class="nav-item"><a class="nav-link" href="?p=mes_commandes">Mes commandes</a></li>
+        <li class="nav-item"><a class="nav-link" href="actions/logout.php">Déconnexion (<?=$_SESSION['user_name']?>)</a></li>
       <?php }else { ?>
-      <li><a href="?p=login">Connexion</a></li>
+      <li class="nav-item"><a class="nav-link" href="?p=login">Connexion</a></li>
       <?php } if($is_admin) {?>
-        <li><a href="?p=admin_commande">Gérer commandes</a></li>
-        <li><a href="?p=admin_contact">Gérer contacts</a></li>
-        <li><a href="?p=admin_add_product">Ajouter un produit</a></li>
+        <li class="nav-item"><a class="nav-link" href="?p=admin_commande">Gérer commandes</a></li>
+        <li class="nav-item"><a class="nav-link" href="?p=admin_contact">Gérer contacts</a></li>
+        <li class="nav-item"><a class="nav-link" href="?p=admin_add_product">Ajouter un produit</a></li>
         <?php } ?>
     </ul>
   </nav>
-</header>
+  </header>
