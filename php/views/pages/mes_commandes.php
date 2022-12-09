@@ -24,7 +24,7 @@ ob_start();
                 ?>
                 <li class="list-group-item d-flex justify-content-between align-items-center">Produit : <?= $product->name?></li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">Description : <?= $product->description ?></li>
-                <li class="list-group-item d-flex justify-content-between align-items-center">Prix : <?= $product->price?></li>
+                <li class="list-group-item d-flex justify-content-between align-items-center">Prix : <?= $product->price?> $</li>
                 <li class="list-group-item d-flex justify-content-between align-items-center">Quantité : <?= $pc->quantity?></li>
                 <br>
             <?php } }?>
