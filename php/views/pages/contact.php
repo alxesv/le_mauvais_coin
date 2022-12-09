@@ -6,14 +6,15 @@ ob_start();
 ?>
 <h1 class="text-center main-title">Contact page</h1>
 
+
+
+<section class="form-inscription">
+<form class="form-note" action="actions/send_contact.php" method="POST">
 <?php 
 if ($error_message){ ?>
     <p class="error"><?=$error_message?></p>
 <?php }
 ?>
-
-<section class="form-inscription">
-<form class="form-note" action="actions/send_contact.php" method="POST">
   <label for="name">Votre nom :</label><br>
   <input type="text" id="name" name="name"><br>
   

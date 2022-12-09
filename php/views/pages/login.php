@@ -6,13 +6,14 @@ ob_start();
 ?>
 <h1 class="text-center main-title">Connexion</h1>
 
+
+<section class="form-inscription">
+<form class="form-note" action = "actions/send_login.php" method="POST">
 <?php
 if($error_message){ ?>
     <p class ="error"><?=$error_message?></p>
 <?php }
 ?>
-<section class="form-inscription">
-<form class="form-note" action = "actions/send_login.php" method="POST">
 <label for="name">Name:</label><br>
   <input type="text" id="name" name="name" required><br>
 
