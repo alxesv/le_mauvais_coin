@@ -46,7 +46,7 @@ ob_start();
     <?php } ?>
     <?php if($is_admin){ ?>
     <li><a href="?p=admin_edit_product&id=<?=$all_info_product[0]->id?>">Modifier</a></li>
-    <li><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$all_info_product[0]->id?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton"></form></li>
+    <li><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$all_info_product[0]->id?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton btn btn-danger"></form></li>
     <?php } ?>
     <?php ?>
     <?php if($rating != 0){?>
@@ -86,7 +86,7 @@ ob_start();
             <small><?= $comment->date ?></small>
             <p><?= $comment->comment ?></p>
             <?php if($is_admin) { ?> 
-                <form action="actions/delete.php" method="POST"><input type="submit" value="Supprimer" name="delete_comment"><input type="hidden" name="comment_id" value="<?= $comment->id ?>"></form>
+                <form action="actions/delete.php" method="POST"><input class="btn btn-danger" type="submit" value="Supprimer" name="delete_comment"><input type="hidden" name="comment_id" value="<?= $comment->id ?>"></form>
             <?php } ?>
         </div>
     <?php } } ?>
