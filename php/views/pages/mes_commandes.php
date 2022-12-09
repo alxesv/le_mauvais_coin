@@ -15,7 +15,7 @@ ob_start();
     ?>
     <div class="p-3 mb-2 bg-light text-dark shadow-sm">
     <div class="text-center">Numéro de commande <?= $commande->id ?></div>
-    <div>Statut : <?= $commande->status ?></div>
+    <div class="fw-bold">Statut : <?= $commande->status ?></div>
     <div>Commandé le : <?= $commande->dateCommande ?></div>
     <div>Contenu : 
         <ul class="list-group">

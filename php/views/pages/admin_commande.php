@@ -16,6 +16,8 @@ if (!empty($statut)){
 $query = $sql . $order;
 $commandes = $CommandeManager->get_all_from_table($query);
 $users = $UserManager->get_all_from_table();
+$products = $ProductManager->get_all_from_table();
+$productCommand = $ProductCommandeManager->get_all_from_table();
 ob_start();
 ?>
 <h1>Admin Commande page</h1>
@@ -37,10 +39,12 @@ ob_start();
             </select>
             <input type="submit" value="Go" class="btn btn-success">
         </form>
-    <?php foreach($commandes as $commande){ ?>
+    <?php foreach($commandes as $commande){ 
+        $prixTotal = 0;
+        ?>
         <li class="p-3 mb-2 bg-light text-dark shadow-sm">
-            <div>Numéro commande : <?= $commande->id?></div>
-            <div>Statut : <?= $commande->status?></div>
+            <div class="text-center">Numéro commande : <?= $commande->id?></div>
+            <div class="fw-bold">Statut : <?= $commande->status?></div>
             <form action="actions/update_commande.php" method="POST">
                 <label for="changeStatut">Changer le statut</label>
                 <select name="changeStatut" id="changeStatut">
@@ -56,6 +60,22 @@ ob_start();
             <div>Date commande : <?= $commande->dateCommande?></div>
             <div>Derniere mise à jour : <?= $commande->dateLastUpdate?></div>
             <div>Adresse : <?= $commande->adresseLivraison?></div>
+            <div>Détails de la commande :
+                <ul>
+                <?php foreach($productCommand as $pc){ 
+                    if($commande->id == $pc->commande_id) {
+                        foreach($products as $product){
+                            if($product->id == $pc->product_id){
+                                $prixTotal += $pc->quantity * $product->price;
+                                ?>
+                                <li> <span class="fw-bold"><?= $product->name ?></span> x <?= $pc->quantity ?></li>
+                                <li><?= $product->price*$pc->quantity ?> $</li>
+                            <?php }
+                        }
+                 } } ?>
+                </ul>
+            </div>
+            <div class="text-center">Prix total = <?= $prixTotal ?> $</div>
         </li>
     <?php } ?>
     <ul>
