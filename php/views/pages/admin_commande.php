@@ -35,7 +35,7 @@ ob_start();
                 <option value="Finie"<?php if(isset($_GET['statut'])){if("Finie" == $_GET['statut']){echo 'selected';}}?>>Finie</option>
                 <option value="Retour Client"<?php if(isset($_GET['statut'])){if("Retour Client" == $_GET['statut']){echo 'selected';}}?>>Retour client</option>
             </select>
-            <input type="submit" value="Go">
+            <input type="submit" value="Go" class="btn btn-success">
         </form>
     <?php foreach($commandes as $commande){ ?>
         <li class="p-3 mb-2 bg-light text-dark shadow-sm">
@@ -50,7 +50,7 @@ ob_start();
                     <option value="Retour Client"<?php if($commande->status == "Retour Client"){ echo 'disabled selected';}?>>Retour Client</option>
                 </select>
                 <input type="hidden" value="<?= $commande->id ?>" name="commande_id">
-                <input type="submit" value="Go">
+                <input type="submit" value="Go" class="btn btn-success">
             </form>
             <div>Utilisateur : <?php foreach($users as $user) {if($commande->user_id == $user->id){ echo $user->name;} }?></div>
             <div>Date commande : <?= $commande->dateCommande?></div>
