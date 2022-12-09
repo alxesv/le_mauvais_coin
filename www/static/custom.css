@@ -6,3 +6,33 @@ body {
     justify-content: space-evenly;
     margin-top: 1rem;
 }
+
+.form-inscription{
+    margin-top: 6rem;
+    display: flex; 
+    justify-content: center;
+}
+.form-note {
+    background-color: #F8F9FA;
+    padding: 2rem 4rem;
+    border-radius: 1rem;
+}
+.form-note input:not(.btn) ,.message-contact{
+    margin-top: 0.5em;
+    border: none;
+    background-color: #ced2d7;
+    width: 14rem;
+    height: 2rem;
+    border-radius: 5px;
+}
+.message-contact{
+    width: 14rem;
+    height: 6rem;
+}
+.main-title{
+    margin-top: 2rem;
+    font-size: 4rem;
+}
+.button-inscription {
+    margin-top: 1rem;
+}

@@ -4,28 +4,30 @@ $pageTitle = "Inscription";
 $error_message = get_error();
 ob_start();
 ?>
-<h1>Inscription</h1>
+<h1 class="text-center main-title">Inscription</h1>
 
 <?php
 if($error_message){ ?>
     <p class ="error"><?=$error_message?></p>
 <?php }
 ?>
+<section class="form-inscription">
 
-<form action = "actions/send_register.php" method="POST">
+<form class="form-note" action = "actions/send_register.php" method="POST">
   <label for="name">Name:</label><br>
-  <input type="text" id="name" name="name" required><br>
+  <input class="form-pseudo" type="text" id="name" name="name" required><br>
   <label for="email">Email:</label><br>
-  <input type="email" id="email" name="email" required><br>
+  <input class="form-email" type="email" id="email" name="email" required><br>
   <label for="phone">Téléphone:</label><br>
-  <input type="tel" id="phone" name="phone" required><br>
+  <input class ="tel" type="tel" id="phone" name="phone" required><br>
   <label for="password">Password:</label><br>
-  <input type="password" id="password" name="password" required><br>
+  <input class="form-mdp" type="password" id="password" name="password" required><br>
   <label for="password">Confirm password:</label><br>
-  <input type="password" id="conf_password" name="conf_password" required><br>
-  <input type="submit" value="S'inscrire">
+  <input class="form-confirm" type="password" id="conf_password" name="conf_password" required><br>
+  <input class="button-inscription btn btn-primary" type="submit" value="S'inscrire">
 </form>
 
+</section>
 <?php
 $pageContent = ob_get_clean();
 ?>
