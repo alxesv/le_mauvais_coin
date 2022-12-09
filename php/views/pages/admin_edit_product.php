@@ -33,7 +33,7 @@ ob_start();
     ?>
     </select>
     <input type="hidden" name="product_id" value="<?= $product[0]->id ?>">
-    <input type="submit" value ="Modifier" name="edit" class="submitButton">
+    <input type="submit" value ="Modifier" name="edit" class="submitButton btn btn-success mt-1">
 </form>
 <?php
 $pageContent = ob_get_clean();

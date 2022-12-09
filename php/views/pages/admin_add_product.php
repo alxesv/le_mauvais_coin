@@ -28,7 +28,7 @@ ob_start();
     <?php }
     ?>
     </select>
-    <input type="submit" value ="Ajouter" name="edit" class="submitButton">
+    <input type="submit" value ="Ajouter" name="edit" class="submitButton btn btn-success mt-1">
 </form>
 <?php
 $pageContent = ob_get_clean();

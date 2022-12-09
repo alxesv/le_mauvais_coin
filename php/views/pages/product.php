@@ -30,7 +30,7 @@ if(isset($_SESSION['user_id'])){
 $rating = round((float)$ratings[0][0], 2);
 ob_start();
 ?>
-<h1>Produit</h1>
+<h1 class="text-center main-title">Produit</h1>
     <ul>
     <li><?php 
          echo $all_info_product[0]->name; ?></li>
@@ -42,31 +42,30 @@ ob_start();
             }}?>
     </li>
     <?php if(isset($_SESSION['user_id'])){?>
-    <li><form method="POST" action ="actions/addPanier.php"><input type="hidden" name="product_id" value="<?=$all_info_product[0]->id?>"><input type="submit" name="addProduct" value="Ajouter" class="addButton"></form></li>
+    <li><form method="POST" action ="actions/addPanier.php"><input type="hidden" name="product_id" value="<?=$all_info_product[0]->id?>"><input type="submit" name="addProduct" value="Ajouter" class="addButton btn btn-primary"></form></li>
     <?php } ?>
     <?php if($is_admin){ ?>
     <li><a href="?p=admin_edit_product&id=<?=$all_info_product[0]->id?>">Modifier</a></li>
-    <li><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$all_info_product[0]->id?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton"></form></li>
+    <li><form method="POST" action ="actions/delete.php"><input type="hidden" name="product_id" value="<?=$all_info_product[0]->id?>"><input type="submit" name="delete" value="Supprimer" class="deleteButton btn btn-danger"></form></li>
     <?php } ?>
     <?php ?>
     <?php if($rating != 0){?>
     <span>Note : <?= $rating ?></span>
     <?php } ?>
     <?php if($can_rate && ($can_comment|| $is_admin)){ ?>
-        <form action="actions/rating.php" method="POST">
-        <input type="radio" id="rating1" name="rating" required value="1">
-        <label for="rating1">1</label>
-        <input type="radio" id="rating2" name="rating" required value="2">
+        <form action="actions/rating.php" method="POST"><label for="rating1">1</label>
+        <input type="radio" class="form-check-input" id="rating1" name="rating" required value="1">
         <label for="rating2">2</label>
-        <input type="radio" id="rating3" name="rating" required value="3">
+        <input type="radio" class="form-check-input" id="rating2" name="rating" required value="2">
         <label for="rating3">3</label>
-        <input type="radio" id="rating4" name="rating" required value="4">
+        <input type="radio" class="form-check-input" id="rating3" name="rating" required value="3">
         <label for="rating4">4</label>
-        <input type="radio" id="rating5" name="rating" required value="5">
+        <input type="radio" class="form-check-input" id="rating4" name="rating" required value="4">
         <label for="rating5">5</label>
+        <input type="radio" class="form-check-input" id="rating5" name="rating" required value="5">
         <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
         <input type="hidden" name="product_id" value="<?= $all_info_product[0]->id ?>">
-        <input type="submit" value="Noter">
+        <input type="submit" value="Noter" class="btn btn-primary">
         </form>
     <?php } ?>
     <h2>Commentaires</h2>
@@ -76,7 +75,7 @@ ob_start();
             <textarea name="comment" id="comment" cols="20" rows="5"></textarea><br>
             <input type="hidden" name="user_id" value="<?= $_SESSION['user_id'] ?>">
             <input type="hidden" name="product_id" value="<?= $all_info_product[0]->id ?>">
-            <input type="submit" valeur="Commenter">
+            <input type="submit" valeur="Commenter" class="btn btn-primary">
         </form>
     <?php } ?>
     <?php if(empty($comments)){?>
@@ -87,7 +86,7 @@ ob_start();
             <small><?= $comment->date ?></small>
             <p><?= $comment->comment ?></p>
             <?php if($is_admin) { ?> 
-                <form action="actions/delete.php" method="POST"><input type="submit" value="Supprimer" name="delete_comment"><input type="hidden" name="comment_id" value="<?= $comment->id ?>"></form>
+                <form action="actions/delete.php" method="POST"><input class="btn btn-danger" type="submit" value="Supprimer" name="delete_comment"><input type="hidden" name="comment_id" value="<?= $comment->id ?>"></form>
             <?php } ?>
         </div>
     <?php } } ?>
