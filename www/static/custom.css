@@ -36,3 +36,10 @@ body {
 .button-inscription {
     margin-top: 1rem;
 }
+.btn-panier{
+    display: flex;
+    align-items: center;
+}
+.quantity-panier{
+    margin: 10px;
+}
