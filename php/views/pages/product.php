@@ -35,7 +35,7 @@ ob_start();
     <li><?php 
          echo $all_info_product[0]->name; ?></li>
     <li><?= $all_info_product[0]->description; ?></li>
-    <li><?= $all_info_product[0]->price; ?></li>
+    <li><?= $all_info_product[0]->price; ?> $</li>
     <li><?php foreach($categories as $category){
         if ($category->id == $all_info_product[0]->category_id){
             echo $category->name;
