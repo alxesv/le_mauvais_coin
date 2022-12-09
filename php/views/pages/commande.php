@@ -4,7 +4,7 @@ if(isset($_SESSION['user_id'])){
     $user_id = $_SESSION['user_id'];
 }
 $error_message = get_error();
-$query= "SELECT product.id, product.name, product.price , product.description FROM panier INNER JOIN product ON panier.product_id = product.id WHERE panier.user_id =". $user_id;
+$query= "SELECT product.id, product.name, product.price , product.description, panier.quantity FROM panier INNER JOIN product ON panier.product_id = product.id WHERE panier.user_id =". $user_id;
 $panier = $PanierManager->custom_select($query);
 ob_start();
 ?>
@@ -12,9 +12,11 @@ ob_start();
 <h2>Récapitulatif</h2>
 <?php 
 foreach($panier as $productPanier){ ?>
+<div class="p-3 mb-2 bg-light text-dark shadow-sm">
     <li><?= $productPanier["name"] ?> : <?= $productPanier["price"] ?> </li>
+    <li> Quantité : <?= $productPanier["quantity"] ?></li>
     <li><?= $productPanier["description"] ?> </li>
-      
+</div>      
 <?php } ?>
 <form action= "actions/addCommande.php" method="POST" >
 <?php if($error_message){ ?>    
